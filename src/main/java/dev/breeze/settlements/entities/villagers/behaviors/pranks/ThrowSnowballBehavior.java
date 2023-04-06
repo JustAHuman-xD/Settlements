@@ -40,7 +40,7 @@ public final class ThrowSnowballBehavior extends PrankEntityBehavior {
 
             @Override
             public void safeRun() {
-                if (this.elapsed > TimeUtil.seconds(2) || annoyTarget == null || !annoyTarget.isAlive()) {
+                if (this.elapsed > TimeUtil.seconds(2) || annoyTarget == null || !annoyTarget.isAlive() || villager.position().distanceTo(annoyTarget.position()) > 5) {
                     if (villager instanceof BaseVillager baseVillager)
                         baseVillager.clearHeldItem();
                     this.cancel();
