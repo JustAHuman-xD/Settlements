@@ -12,8 +12,8 @@ import net.minecraft.world.entity.ai.behavior.EntityTracker;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.memory.WalkTarget;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -61,7 +61,7 @@ public abstract class PrankEntityBehavior extends InteractAtTargetBehavior {
             List<LivingEntity> nearbyEntities = villager.getBrain().getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES).get();
 
             for (LivingEntity nearby : nearbyEntities) {
-                if (nearby instanceof Villager || nearby instanceof WanderingTrader) {
+                if (villager != nearby && nearby instanceof AbstractVillager && villager.position().distanceTo(nearby.position()) <= 5.0) {
                     this.annoyTarget = nearby;
                     break;
                 }
